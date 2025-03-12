@@ -75,7 +75,8 @@ end
 ---Create the `background` options with the current image
 ---@private
 ---@return table
-function BackDrops:_create_opts()
+---@param opacity (number|nil) opacity value
+function BackDrops:_create_opts(opacity)
    return {
       {
          source = { File = self.images[self.current_idx] },
@@ -87,7 +88,7 @@ function BackDrops:_create_opts()
          width = '120%',
          vertical_offset = '-10%',
          horizontal_offset = '-10%',
-         opacity = 0.96,
+         opacity = opacity or 0.96,
       },
    }
 end
@@ -95,7 +96,8 @@ end
 ---Create the `background` options for focus mode
 ---@private
 ---@return table
-function BackDrops:_create_focus_opts()
+---@param opacity (number|nil) opacity value
+function BackDrops:_create_focus_opts(opacity)
    return {
       {
          source = { Color = self.focus_color },
@@ -103,7 +105,7 @@ function BackDrops:_create_focus_opts()
          width = '120%',
          vertical_offset = '-10%',
          horizontal_offset = '-10%',
-         opacity = self.opacity,
+         opacity = opacity or self.opacity,
       },
    }
 end
@@ -223,6 +225,26 @@ function BackDrops:toggle_focus(window)
    else
       background_opts = self:_create_focus_opts()
       self.focus_on = true
+   end
+
+   self:_set_opt(window, background_opts)
+end
+
+---Change opacity value
+---@param window any WezTerm `Window` see: https://wezfurlong.org/wezterm/config/lua/window/index.html
+---@param opacity (number|nil) opacity value
+function BackDrops:change_opacity(window, opacity)
+   if opacity > 1 or opacity < 0 then
+      wezterm.log_error('Opacity value must be between 0 and 1')
+      return
+   end
+
+   local background_opts
+
+   if self.focus_on then
+      background_opts = self:_create_focus_opts(opacity)
+   else
+      background_opts = self:_create_opts(opacity)
    end
 
    self:_set_opt(window, background_opts)

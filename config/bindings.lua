@@ -154,6 +154,19 @@ local keys = {
          backdrops:toggle_focus(window)
       end)
    },
+   {
+      key = 'o',
+      mods = mod.SUPER,
+      action = act.PromptInputLine({
+        description = 'Enter opacity value:',
+        action = wezterm.action_callback(function(window, _pane, line)
+         local value = tonumber(line)
+          if value then
+            backdrops:change_opacity(window,value)
+          end
+        end),
+      }),
+  },
 
    -- panes --
    -- panes: split panes
