@@ -186,6 +186,7 @@ Most of the key bindings revolve around a <kbd>SUPER</kbd> and <kbd>SUPER_REV</k
 | <kbd>SUPER</kbd>+<kbd>.</kbd>     | Cycle to previous Image      |
 | <kbd>SUPER_REV</kbd>+<kbd>/</kbd> | Fuzzy select Image           |
 | <kbd>SUPER</kbd>+<kbd>b</kbd>     | Toggle background focus mode |
+| <kbd>SUPER</kbd>+<kbd>o</kbd>     | Input an opacity value       |
 
 &nbsp;
 
