@@ -1,7 +1,7 @@
 local wezterm = require('wezterm')
 
 local font_family = 'Cascadia Code PL'
-local font_size = 15
+local font_size = 12
 
 return {
    font = wezterm.font({
