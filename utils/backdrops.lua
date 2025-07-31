@@ -30,7 +30,7 @@ function BackDrops:init()
       images_dir = wezterm.config_dir .. '/backdrops/',
       focus_color = colors.background,
       focus_on = false,
-      opacity = 0.3,
+      opacity = 0.6,
    }
    local backdrops = setmetatable(inital, self)
    return backdrops
